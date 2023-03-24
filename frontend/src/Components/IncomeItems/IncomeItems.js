@@ -4,9 +4,9 @@ import { dateFormat } from '../../utils/dateFormat';
 import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
 import Button from '../Button/Button';
 
-function IncomeItem({
+function IncomeItems({
     id,
-    title,
+    tittle,
     amount,
     date,
     category,
@@ -16,72 +16,97 @@ function IncomeItem({
     type
 }) {
 
-    const categoryIcon = () =>{
-        switch(category) {
+    const categoryIcon = () => {
+
+        switch (category) {
             case 'salary':
                 return money;
+
             case 'freelancing':
-                return freelance
+                return freelance;
+
             case 'investments':
                 return stocks;
+
             case 'stocks':
-                return users;
+                return users
+
             case 'bitcoin':
                 return bitcoin;
+
             case 'bank':
                 return card;
+
             case 'youtube':
                 return yt;
+
             case 'other':
                 return piggy;
+
             default:
                 return ''
         }
     }
 
     const expenseCatIcon = () => {
+
         switch (category) {
+
             case 'education':
                 return book;
+
             case 'groceries':
                 return food;
+
             case 'health':
                 return medical;
-            case 'subscriptions':
+
+            case 'freelancing':
+              return freelance;
+              
+            case 'subscription ':
                 return tv;
-            case 'takeaways':
+
+            case 'takeaway':
                 return takeaway;
+
             case 'clothing':
                 return clothing;
+
             case 'travelling':
                 return freelance;
+
             case 'other':
                 return circle;
+
             default:
-                return ''
+                return '';
+
         }
     }
 
-    console.log('type', type)
 
     return (
-        <IncomeItemStyled indicator={indicatorColor}>
-            <div className="icon">
+        <IncomesStyled indicator={indicatorColor} >
+
+            <div className='icon'>
                 {type === 'expense' ? expenseCatIcon() : categoryIcon()}
             </div>
-            <div className="content">
-                <h5>{title}</h5>
-                <div className="inner-content">
-                    <div className="text">
-                        <p>{dollar} {amount}</p>
+            <div className='content'>
+                <h5>{tittle}</h5>
+                <div className='inner-content'>
+                    <div className='text'>
+                        <p> ₹ {amount}</p>
                         <p>{calender} {dateFormat(date)}</p>
+
                         <p>
                             {comment}
                             {description}
                         </p>
+
                     </div>
-                    <div className="btn-con">
-                        <Button 
+                    <div className='btn-con'>
+                        <Button
                             icon={trash}
                             bPad={'1rem'}
                             bRad={'50%'}
@@ -94,12 +119,13 @@ function IncomeItem({
                     </div>
                 </div>
             </div>
-        </IncomeItemStyled>
+
+        </IncomesStyled>
     )
 }
 
-const IncomeItemStyled = styled.div`
-    background: #FCF6F9;
+const IncomesStyled = styled.div`
+background: #FCF6F9;
     border: 2px solid #FFFFFF;
     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
     border-radius: 20px;
@@ -123,7 +149,6 @@ const IncomeItemStyled = styled.div`
             font-size: 2.6rem;
         }
     }
-
     .content{
         flex: 1;
         display: flex;
@@ -145,7 +170,6 @@ const IncomeItemStyled = styled.div`
                 background: ${props => props.indicator};
             }
         }
-
         .inner-content{
             display: flex;
             justify-content: space-between;
@@ -163,7 +187,6 @@ const IncomeItemStyled = styled.div`
                 }
             }
         }
-    }
-`;
+    }`;
 
-export default IncomeItem
+export default IncomeItems
